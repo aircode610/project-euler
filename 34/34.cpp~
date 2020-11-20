@@ -1,0 +1,52 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+map<int, int> memo;
+
+int fact(int num){
+  
+  if (num == 1){
+    return 1;
+  }
+
+  if (memo.find(num) == memo.end()){
+    memo[num] = num * fact(num - 1);
+    return memo[num];
+  }
+  else {
+    return memo[num];
+  }
+  
+}
+
+int main() {
+
+  long long sum = 0;
+  long long num = 3;
+
+  while (true){
+
+    long long tempSum = 0;
+    long long tempNum = num;
+    
+    while (tempNum != 0){
+      int digit = tempNum % 10;
+      tempSum += fact(digit);
+      tempNum /= 10;
+    }
+
+    if (tempSum == num){
+      sum += num;
+    }
+
+    num++;
+
+    cout << sum << endl;
+    
+  }
+  
+  return 0;
+  
+}

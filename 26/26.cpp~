@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+int rep(string num){
+  
+  return 0;
+}
+
+int main(){
+
+  cout.setf( std::ios::fixed, std:: ios::floatfield );
+  
+  int maxRep = 0;
+  int maxd = 0;
+  
+  for (int i = 2; i < 1000; i++){
+    double division = 1.0 / (double)i;
+    
+    ostringstream ss;
+    ss << division;
+    
+    int repeat = rep(ss.str());
+      
+    if (maxRep < repeat){
+      maxRep = repeat;
+      maxd = i;
+    }
+  }
+
+  cout << maxd << endl;
+  
+  return 0;
+  
+}

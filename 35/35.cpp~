@@ -1,0 +1,103 @@
+#include <iostream>
+#include <math.h>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+const int n = 1000000;
+int allNums[n - 1];
+
+void empty(int num, int index){
+  
+  for (int i = index;i < n - 1; i++){
+    if (allNums[i] % num == 0){
+      allNums[i] = 0;
+    }
+  }
+  
+}
+
+int digits(int num){
+
+  int count = 0;
+
+  while (num != 0){
+    num /= 10;
+    count++;
+  }
+
+  return count;
+  
+}
+
+bool isPrime(int num){
+  for (int i = 2; i < num; i++){
+    if (num % i == 0){
+      return false;
+    }
+  }
+
+  return true;
+}
+
+int main() {
+
+  vector<int> primes;
+  
+  for (int i = 2; i <= n; i++){
+    allNums[i - 2] = i;
+  }
+
+  int i = 0;
+  
+  while (i < n - 1){
+    int num = allNums[i];
+
+    if (num == 0){
+      i++;
+      continue;
+    }
+    else{
+      empty(num, i++);
+      primes.push_back(num);
+    }
+    
+  }
+
+  int count = 0;
+  
+  for (int i = 2; i < n; i++){
+    
+    bool con = true;
+
+    if (find(primes.begin(), primes.end(),i)==primes.end()){
+      continue;
+    }
+    
+    int num = i;  
+    int dig = digits(num) - 1;
+      
+    for (int j = 1; j <= dig ; j++){
+      int first = num / (int)pow(10, dig);
+      int second = num % (int)pow(10, dig);
+      num = second * pow(10, dig) + first;
+
+      if (find(primes.begin(), primes.end(), num)==primes.end()){
+	con = false;
+	break;
+      }
+    }
+
+    if (con == true){
+      cout << num << endl;
+      count++;
+    }
+    
+  }
+  
+  cout << "count : " << count;
+  
+  return 0;
+  
+}

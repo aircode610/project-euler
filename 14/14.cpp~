@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+/*
+int chain(int start, int count) {
+  cout << start;
+  if (start == 1){
+    return count + 1;
+  }
+  if (start % 2 == 0){
+    return chain(start / 2, ++count);
+  }else {
+    return chain(3 * start + 1, ++count);
+  }
+}
+*/
+int main() {
+  
+  int maxChain = 0;
+  int maxStart = 1;
+  /*
+  for (int i = 1; i < 1000000; i++){
+    int chainCount = chain(i, 0);
+    if (maxChain < chainCount){
+      maxChain = chainCount;
+    }
+  }
+  */
+
+  for (int i = 1; i < 1000000; i++){
+    int count = 1;
+    int num = i;
+    while (num != 1){
+      if (num % 2 == 0){
+	num /= 2;
+      }else {
+	num = num * 3 + 1;
+      }
+      count++;
+    }
+
+    cout << i << " " << count << endl;
+    
+    if (count > maxChain){
+      maxChain = count;
+      maxStart = i;
+    }
+    
+  }
+
+  cout << maxStart;
+  
+  return 0;
+  
+}
