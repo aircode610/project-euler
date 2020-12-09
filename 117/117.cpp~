@@ -1,0 +1,14 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int M = 50 + 10;
+int dp[M][M];
+
+int32_t main() {
+
+  
+  
+  return 0;
+  
+}
